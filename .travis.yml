@@ -1,0 +1,21 @@
+language: java
+jdk:
+- openjdk17
+install:
+- mvn clean install -DskipTests
+script:
+
+- mvn clean install
+- cd Appariement
+- mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8081
+- cd ../Player
+- mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8082
+- mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8083
+- cd Anagrammeur
+- mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8084
+
+
+
+
+
+

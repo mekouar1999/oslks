@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  ClassesCommunes:
+    image: scrabble:ClassesCommunes
+    container_name: ClassesCommunes
+    networks:
+      testing_net:
+        ipv4_address: 172.28.0.253
+
+
+  Joueur:
+    image: scrabble:Joueur
+    environment:
+      - SERVER_IP=172.28.0.253
+    networks:
+      testing_net:
+
+
+ Moteur:
+    image: scrabble:Moteur
+    environment:
+      - SERVER_IP=172.28.0.253
+    networks:
+      testing_net:
+        ipv4_address: 172.28.0.252
+
+
+
+
+
+networks:
+  testing_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
